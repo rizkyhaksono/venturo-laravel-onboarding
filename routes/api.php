@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\SiteController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\UserRolesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,17 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function () {
     Route::get('/', [SiteController::class, 'index']);
 
+    Route::get('/users', [UserController::class, 'index']);
+    Route::get('/users/{id}', [UserController::class, 'show']);
+    Route::post('/users', [UserController::class, 'store']);
+    Route::put('/users', [UserController::class, 'update']);
+    Route::delete('/users/{id}', [UserController::class, 'destroy']);
+
+    Route::get('/roles', [UserRolesController::class, 'index']);
+    Route::get('/roles/{id}', [UserRolesController::class, 'show']);
+    Route::post('/roles', [UserRolesController::class, 'store']);
+    Route::put('/roles/{id}', [UserRolesController::class, 'update']);
+    Route::delete('/roles/{id}', [UserRolesController::class, 'destroy']);
 });
 
 Route::get('/', function () {
